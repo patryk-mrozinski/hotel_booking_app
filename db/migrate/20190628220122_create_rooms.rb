@@ -7,6 +7,7 @@ class CreateRooms < ActiveRecord::Migration[5.2]
       t.string :picture
       t.date :available_from
       t.date :available_to
+      t.references :hotel, foreign_key: true
 
       t.timestamps
     end

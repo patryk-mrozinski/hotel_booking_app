@@ -4,6 +4,7 @@ class CreateHotels < ActiveRecord::Migration[5.2]
       t.string :name
       t.decimal :stars
       t.text :description
+      t.references :city, foreign_key: true
 
       t.timestamps
     end

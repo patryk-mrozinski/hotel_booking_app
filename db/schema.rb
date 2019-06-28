@@ -10,18 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_28_220122) do
+ActiveRecord::Schema.define(version: 2019_06_28_221229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "booked_accommodations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_booked_accommodations_on_room_id"
+    t.index ["user_id"], name: "index_booked_accommodations_on_user_id"
+  end
+
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.string "post_code"
-    t.bigint "countries_id"
+    t.bigint "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["countries_id"], name: "index_cities_on_countries_id"
+    t.index ["country_id"], name: "index_cities_on_country_id"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -35,8 +44,10 @@ ActiveRecord::Schema.define(version: 2019_06_28_220122) do
     t.string "name"
     t.decimal "stars"
     t.text "description"
+    t.bigint "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_hotels_on_city_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -46,8 +57,10 @@ ActiveRecord::Schema.define(version: 2019_06_28_220122) do
     t.string "picture"
     t.date "available_from"
     t.date "available_to"
+    t.bigint "hotel_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["hotel_id"], name: "index_rooms_on_hotel_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,5 +75,9 @@ ActiveRecord::Schema.define(version: 2019_06_28_220122) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "cities", "countries", column: "countries_id"
+  add_foreign_key "booked_accommodations", "rooms"
+  add_foreign_key "booked_accommodations", "users"
+  add_foreign_key "cities", "countries"
+  add_foreign_key "hotels", "cities"
+  add_foreign_key "rooms", "hotels"
 end

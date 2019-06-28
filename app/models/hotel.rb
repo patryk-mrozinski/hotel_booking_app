@@ -1,4 +1,4 @@
 class Hotel < ApplicationRecord
   has_many :rooms
-  belongs_to :cities
+  belongs_to :city
 end
