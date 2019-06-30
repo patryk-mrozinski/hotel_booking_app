@@ -1,4 +1,7 @@
 class HotelsController < ApplicationController
+  # before_action :authenticate_user!, expect: %i(index show)
+  before_action :set_hotel, only: %i(show edit update destroy)
+
   def index
     @hotels = Hotel.all
   end
@@ -6,11 +9,11 @@ class HotelsController < ApplicationController
   def show; end
 
   def new
-    @hotel = Hotel.new
+    @hotel = current_user.hotels.new
   end
 
   def create
-    @hotel = Hotel.create(hotel_params)
+    @hotel = current_user.hotels.build(hotel_params)
 
     if @hotel.save
       redirect_to @hotel
@@ -32,4 +35,15 @@ class HotelsController < ApplicationController
   def destroy
     @hotel.destroy
     redirect_to hotels_path
+  end
+
+  private
+
+  def set_hotel
+    @hotel = Hotel.find(params[:id])
+  end
+
+  def hotel_params
+    params.require(:hotel).permit(:name, :stars, :description, user_ids: [], city_ids: [])
+  end
 end
