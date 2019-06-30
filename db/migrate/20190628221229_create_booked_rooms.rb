@@ -1,6 +1,6 @@
-class CreateBookedAccommodations < ActiveRecord::Migration[5.2]
+class CreateBookedRooms < ActiveRecord::Migration[5.2]
   def change
-    create_table :booked_accommodations do |t|
+    create_table :booked_rooms do |t|
       t.references :user, foreign_key: true
       t.references :room, foreign_key: true
 
