@@ -1,6 +1,8 @@
 class RoomsController < ApplicationController
-  before_action :authenticate_user!, expect: %i(index show)
-  before_action :set_room, only: %i(show edit update destroy)
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_room, only: %i(show show_rooms edit update destroy)
+
+  layout 'for_companies', except: %i(index show)
 
   def index
     @rooms = Room.all
@@ -8,15 +10,22 @@ class RoomsController < ApplicationController
 
   def show; end
 
+  def index_rooms
+    @rooms = current_user.rooms
+    @rooms = current_user.rooms.build
+  end
+
+  def show_rooms; end
+
   def new
-    @room = current_user.rooms.new
+    @room = Room.new
   end
 
   def create
     @room = current_user.rooms.build(room_params)
 
     if @room.save
-      redirect_to @room
+      redirect_to [:company, @room]
     else
       render :new
     end
@@ -26,7 +35,7 @@ class RoomsController < ApplicationController
 
   def update
     if @room.update(room_params)
-      redirect_to @room
+      redirect_to [:company, @room]
     else
       render :edit
     end

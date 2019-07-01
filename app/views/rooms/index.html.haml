@@ -1,0 +1,6 @@
+%h1 this is index page
+- @rooms.each do |room|
+  %hr
+  = link_to room.name, hotel_room_path(room.hotel, room), class: 'btn btn-primary'
+-if user_signed_in?
+  = link_to 'Create room', new_hotel_room_path, class: 'btn btn-primary'

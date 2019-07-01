@@ -1,6 +1,8 @@
 class HotelsController < ApplicationController
-  # before_action :authenticate_user!, expect: %i(index show)
-  before_action :set_hotel, only: %i(show edit update destroy)
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_hotel, only: %i(show show_hotel edit update destroy)
+
+  layout 'for_companies', except: %i(index show)
 
   def index
     @hotels = Hotel.all
@@ -8,15 +10,22 @@ class HotelsController < ApplicationController
 
   def show; end
 
+  def index_hotels
+    @hotels = current_user.hotels
+    @hotel = current_user.hotels.build
+  end
+
+  def show_hotel; end
+
   def new
-    @hotel = current_user.hotels.new
+    @hotel = current_user.hotels.build
   end
 
   def create
     @hotel = current_user.hotels.build(hotel_params)
 
     if @hotel.save
-      redirect_to @hotel
+      redirect_to [:company, @hotel]
     else
       render :new
     end
@@ -26,7 +35,7 @@ class HotelsController < ApplicationController
 
   def update
     if @hotel.update(hotel_params)
-      redirect_to @hotel
+      redirect_to [:company, @hotel]
     else
       render :edit
     end
