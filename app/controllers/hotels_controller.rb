@@ -25,7 +25,7 @@ class HotelsController < ApplicationController
     @hotel = current_user.hotels.build(hotel_params)
 
     if @hotel.save
-      redirect_to [:company, @hotel]
+      redirect_to [:for_company, @hotel]
     else
       render :new
     end
@@ -35,7 +35,7 @@ class HotelsController < ApplicationController
 
   def update
     if @hotel.update(hotel_params)
-      redirect_to [:company, @hotel]
+      redirect_to [:for_company, @hotel]
     else
       render :edit
     end

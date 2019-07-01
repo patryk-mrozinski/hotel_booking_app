@@ -3,6 +3,8 @@ module Company
     before_action :authenticate_user!
     before_action :set_company, only: %i(show edit update destroy)
 
+    layout 'for_company'
+
     def index
       @companies = current_user.companies
     end
@@ -18,6 +20,9 @@ module Company
 
       if @company.save
         redirect_to @company
+        if current_user.has_company == false
+          current_user.has_company.toggle(company)
+        end
       else
         render :new
       end

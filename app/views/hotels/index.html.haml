@@ -2,5 +2,3 @@
 - @hotels.each do |hotel|
   %hr
   = link_to hotel.name, hotel_path(hotel), class: 'btn btn-primary'
--if user_signed_in?
-  = link_to 'Create hotel', new_hotel_path, class: 'btn btn-primary'

@@ -8,9 +8,9 @@ Rails.application.routes.draw do
 
   # authenticate :company, lambda { |u| u.company? } do
 
- namespace :company do
-   resources :hotels do
-     resources :rooms
-   end
+ namespace :for_company do
+   resources :companies
+   resources :hotels
+   resources :rooms
  end
 end

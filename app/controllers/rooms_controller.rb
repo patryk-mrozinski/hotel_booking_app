@@ -25,7 +25,7 @@ class RoomsController < ApplicationController
     @room = current_user.rooms.build(room_params)
 
     if @room.save
-      redirect_to [:company, @room]
+      redirect_to [:for_company, @room]
     else
       render :new
     end
@@ -35,7 +35,7 @@ class RoomsController < ApplicationController
 
   def update
     if @room.update(room_params)
-      redirect_to [:company, @room]
+      redirect_to [:for_company, @room]
     else
       render :edit
     end
