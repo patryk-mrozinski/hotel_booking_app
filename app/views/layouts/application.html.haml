@@ -8,6 +8,13 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    - if user_signed_in?
+      = link_to 'Logout', destroy_user_session_path
+      = link_to 'Create Company', new_for_company_company_path
+      - if current_user.has_company
+        = link_to 'Your Company', for_company_companies_path
+
+
     %p.notice= notice
     %p.alert= alert
     = yield

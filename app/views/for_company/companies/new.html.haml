@@ -1,0 +1,9 @@
+%h1 Create Company
+
+= simple_form_for [:for_company, @company] do |f|
+  = f.input :name
+  = f.input :p_number, label: 'Phone number'
+  = f.input :address
+  = f.input :company_email
+  = f.input :company_serial, label: 'Company serial'
+  = f.submit

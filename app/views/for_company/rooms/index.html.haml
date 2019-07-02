@@ -1,0 +1,10 @@
+%h1 Rooms page
+
+
+- @rooms.each do |room|
+  = link_to "#{room.name}", for_company_room_path(room)
+  %hr
+  = room.description
+  = room.hotel.name
+  %hr
+  = room.price

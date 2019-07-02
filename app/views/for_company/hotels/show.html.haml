@@ -1,0 +1,8 @@
+%h1= "This is #{@hotel.name} page"
+= link_to 'Create rooms', new_for_company_room_path(company_id: @hotel.company.id)
+%hr
+= @hotel.name
+%hr
+= @hotel.description
+%hr
+= @hotel.stars

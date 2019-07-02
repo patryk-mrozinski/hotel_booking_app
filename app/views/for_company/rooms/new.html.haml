@@ -1,0 +1,9 @@
+%h1 Create Room
+
+= simple_form_for [:for_company, @room] do |f|
+  = f.input :name
+  = f.input :price
+  = f.input :description, label: 'Description'
+  = f.input :hotel_id, collection: @company.hotels, include_blank: false
+  = f.submit
+-# :name, :price, :description, :picture, :available_from, :available_to, :hotel_id

@@ -1,0 +1,13 @@
+%h1 This is show page for company
+%h2= link_to 'Create hotel', new_for_company_hotel_path
+- if @company.hotels
+  = link_to 'Your hotels', for_company_hotels_path
+%hr
+= @company.name
+%hr
+= @company.p_number
+%hr
+= @company.address
+%hr
+= @company.company_email
+= @company.company_serial

@@ -1,9 +1,7 @@
-module Company
+module ForCompany
   class CompaniesController < BaseController
     before_action :authenticate_user!
     before_action :set_company, only: %i(show edit update destroy)
-
-    layout 'for_company'
 
     def index
       @companies = current_user.companies
@@ -19,10 +17,7 @@ module Company
       @company = current_user.companies.build(company_params)
 
       if @company.save
-        redirect_to @company
-        if current_user.has_company == false
-          current_user.has_company.toggle(company)
-        end
+        redirect_to [:for_company, @company]
       else
         render :new
       end
@@ -50,7 +45,7 @@ module Company
     end
 
     def company_params
-      params.require(:company).permit(:name, :p_number, :company_serial, :address, :company_email, user_ids: [])
+      params.require(:company).permit(:name, :p_number, :company_serial, :address, :company_email)
     end
   end
 end

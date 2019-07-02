@@ -1,0 +1,6 @@
+%h1 your Company
+- @companies.each do |company|
+  = company.name
+  = company.company_email
+  = link_to 'Company', for_company_company_path(company)
+  %hr

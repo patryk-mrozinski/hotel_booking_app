@@ -9,6 +9,7 @@
     = javascript_include_tag 'for_company', 'data-turbolinks-track': 'reload'
   %body
     %h1 This is section for company
+    = link_to 'Logout', destroy_user_session_path, method: :delete
     %p.notice= notice
     %p.alert= alert
     = yield

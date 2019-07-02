@@ -1,0 +1,9 @@
+%h1 Hotels page
+
+
+- @hotels.each do |hotel|
+  = link_to "#{hotel.name}", for_company_hotel_path(hotel)
+  %hr
+  = hotel.description
+  = hotel.stars
+  %hr

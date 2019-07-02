@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_01_153305) do
+ActiveRecord::Schema.define(version: 2019_07_02_164700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,11 @@ ActiveRecord::Schema.define(version: 2019_07_01_153305) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "company_id"
+    t.bigint "country_id"
     t.index ["city_id"], name: "index_hotels_on_city_id"
+    t.index ["company_id"], name: "index_hotels_on_company_id"
+    t.index ["country_id"], name: "index_hotels_on_country_id"
     t.index ["user_id"], name: "index_hotels_on_user_id"
   end
 
@@ -99,6 +103,8 @@ ActiveRecord::Schema.define(version: 2019_07_01_153305) do
   add_foreign_key "cities", "countries"
   add_foreign_key "companies", "users"
   add_foreign_key "hotels", "cities"
+  add_foreign_key "hotels", "companies"
+  add_foreign_key "hotels", "countries"
   add_foreign_key "hotels", "users"
   add_foreign_key "rooms", "hotels"
 end
