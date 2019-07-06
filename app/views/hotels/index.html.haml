@@ -1,4 +1,10 @@
-%h1 this is index page
+%h1 this is index page for hotel
+
+= form_tag [:hotels], method: 'get' do
+  = select_tag :stars, options_for_select(0..5) || options_for_select(non)
+  = submit_tag 'Save'
+
 - @hotels.each do |hotel|
   %hr
   = link_to hotel.name, hotel_path(hotel), class: 'btn btn-primary'
+  = "#{hotel.stars} stars"

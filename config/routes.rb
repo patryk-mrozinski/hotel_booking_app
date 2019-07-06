@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'hotels#index'
+  root 'rooms#index'
   devise_for :users
 
   resources :hotels, only: %i[index show] do

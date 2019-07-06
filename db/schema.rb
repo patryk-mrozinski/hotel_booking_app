@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2019_07_02_164700) do
 
   create_table "hotels", force: :cascade do |t|
     t.string "name"
-    t.decimal "stars"
+    t.integer "stars"
     t.text "description"
     t.bigint "city_id"
     t.datetime "created_at", null: false

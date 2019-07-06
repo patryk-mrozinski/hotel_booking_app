@@ -1,1 +1,13 @@
 %h1= "This is #{@hotel.name} page"
+
+%hr
+= @hotel.name
+= @hotel.stars
+%hr
+= @hotel.description
+= @hotel.city.name
+%hr
+= @hotel.company.name
+
+%hr
+= link_to 'Available rooms', hotel_rooms_path(@hotel)
