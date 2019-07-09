@@ -1,4 +1,11 @@
 %h1 this is index page
+
+= form_tag [@hotel, :rooms], method: 'get' do
+  = text_field_tag :room_name, nil, placeholder: 'Type of room'
+  = number_field_tag :min_price, nil, placeholder: 'Min price'
+  = number_field_tag :max_price, nil, placeholder: 'Max price'
+  = submit_tag 'Save'
+
 - @rooms.each do |room|
   %hr
   = link_to room.name, hotel_room_path(room.hotel, room), class: 'btn btn-primary'

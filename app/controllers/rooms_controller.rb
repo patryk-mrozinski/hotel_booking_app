@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   def index
+    @hotel = Hotel.find(params[:hotel_id])
     @rooms = Room.filter(filter_params)
   end
 
@@ -10,7 +11,7 @@ class RoomsController < ApplicationController
   private
 
   def filter_params
-    params.slice(*Hotel.search_scopes)
+    params.slice(*Room.search_scopes)
   end
-  
+
 end
