@@ -9,13 +9,19 @@ Rails.application.routes.draw do
   # authenticate :company, lambda { |u| u.company? } do
 
  namespace :for_company do
-   resources :companies
-   resources :hotels
-   resources :rooms
+   resources :companies do
+     resources :hotels, only: :index
+   end
+
+   resources :hotels, except: :index do
+     resources :rooms, only: :index
+   end
+
+   resources :rooms, except: :index
  end
 
  resources :rooms, only: %i[index show] do
    resources :reservations
  end
- 
+
 end

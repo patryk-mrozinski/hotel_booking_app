@@ -1,7 +1,7 @@
 %h1 This is show page for company
 %h2= link_to 'Create hotel', new_for_company_hotel_path
 - if @company.hotels
-  = link_to 'Your hotels', for_company_hotels_path
+  = link_to 'Your hotels', for_company_company_hotels_path(@company)
 %hr
 = @company.name
 %hr

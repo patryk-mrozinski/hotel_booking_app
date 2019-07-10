@@ -13,6 +13,9 @@
       = link_to 'Create Company', new_for_company_company_path
       - if current_user.has_company
         = link_to 'Your Company', for_company_companies_path
+    - else
+      = link_to 'Login',  new_user_session_path
+      = link_to 'Create an account', new_user_registration_path
 
 
     %p.notice= notice

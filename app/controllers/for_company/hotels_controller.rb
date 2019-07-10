@@ -4,7 +4,8 @@ module ForCompany
     before_action :set_hotel, only: %i(show edit update destroy)
 
     def index
-      @hotels = Hotel.all
+      @company = Company.find(params[:company_id])
+      @hotels = @company.hotels
     end
 
     def show; end
