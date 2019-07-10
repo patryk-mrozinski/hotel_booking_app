@@ -1,1 +1,14 @@
 %h1= "This is #{@room.name} page for room"
+
+= @room.name
+%hr
+= "price is :#{@room.price}"
+%hr
+= @room.description
+%hr
+= @room.available_from
+
+= simple_form_for [@room, @reservation] do |f|
+  = f.input :reservation_from, as: :date
+  = f.input :reservation_to, as: :date
+  = f.button :submit
