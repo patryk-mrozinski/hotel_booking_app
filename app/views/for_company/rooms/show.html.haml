@@ -8,3 +8,8 @@
 %hr
 = @room.price
 = @room.hotel.name
+%hr
+%h4 Pictures:
+
+- @room.images.each do |image|
+  = image_tag image
