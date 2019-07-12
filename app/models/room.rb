@@ -12,6 +12,6 @@ class Room < ApplicationRecord
   search_scope :room_name, -> (name) { where('name iLIKE ?', "%#{name}%") }
   search_scope :min_price, -> (price) { where('price >= ?', price) }
   search_scope :max_price, -> (price) { where('price <= ?', price) }
-  validates :name, :price, :description, presence: true
+  validates :name, :price, :description, :number_of_guests, presence: true
 
 end
