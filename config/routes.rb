@@ -23,5 +23,12 @@ Rails.application.routes.draw do
  resources :rooms, only: %i[index show] do
    resources :reservations
  end
+  namespace :api do
+    namespace :v1 do
+      resources :countries, only: [] do
+        resources :cities, only: :index
+      end
+    end
+  end
 
 end

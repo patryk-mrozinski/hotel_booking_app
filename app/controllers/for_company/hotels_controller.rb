@@ -16,6 +16,7 @@ module ForCompany
 
     def create
       @hotel = Hotel.new(hotel_params)
+      @country = Country.find(params[:country_id])
 
       if @hotel.save
         redirect_to [:for_company, @hotel]
