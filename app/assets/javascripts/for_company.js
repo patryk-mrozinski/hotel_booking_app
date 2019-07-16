@@ -3,8 +3,8 @@
 //= require turbolinks
 //= require jquery
 //= require bootstrap
+//= require select2.min.js
 //= require_tree .
-
 $( document ).ready(function() {
 
   $('#hotel_country_id').on('change', function(event) {
@@ -22,5 +22,7 @@ $( document ).ready(function() {
       $('#hotel_city_id').find('option').remove()
     }
   });
+
+  $('.select2').select2()
 
 });
