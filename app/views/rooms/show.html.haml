@@ -1,14 +1,32 @@
-%h1= "This is #{@room.name} for room show"
+%script{ src: 'https://js.stripe.com/v3/' }
+.container
+  %h1= "This is #{@room.name} for room show"
 
-= @room.name
-%hr
-= "price is :#{@room.price}"
-%hr
-= @room.description
-%hr
-= @room.available_from
+  = @room.name
+  %hr
+  = "price is :#{@room.price}"
+  %hr
+  = @room.description
+  %hr
+  = @room.available_from
+  %hr
 
-= simple_form_for [@room, @reservation] do |f|
-  = f.input :reservation_from, as: :date
-  = f.input :reservation_to, as: :date
-  = f.button :submit
+  = simple_form_for [@room, @reservation] do |f|
+    = f.input :reservation_from, as: :date
+    = f.input :reservation_to, as: :date
+    = f.input :card_holder_name
+    .row
+      .col-lg-9
+        = f.input :address
+      .col-lg-3
+        = f.input :city
+    - unless user_signed_in?
+      = f.input :card_owner_email, label: 'Please pass email for confirmation'
+    .form-group
+      %label{:for => "card-element"}
+        Credit or debit card
+      #card-element
+      #card-errors{role: 'alert'}
+        / A Stripe Element will be inserted here.
+
+    = f.button :submit, class: 'btn btn-primary'

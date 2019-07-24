@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_12_232921) do
+ActiveRecord::Schema.define(version: 2019_07_19_221126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,10 +48,10 @@ ActiveRecord::Schema.define(version: 2019_07_12_232921) do
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.string "post_code"
+    t.integer "distance_from"
     t.bigint "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "distance_from"
     t.index ["country_id"], name: "index_cities_on_country_id"
   end
 
@@ -61,9 +61,9 @@ ActiveRecord::Schema.define(version: 2019_07_12_232921) do
     t.string "address"
     t.string "company_email"
     t.integer "company_serial"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
     t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
@@ -79,11 +79,11 @@ ActiveRecord::Schema.define(version: 2019_07_12_232921) do
     t.integer "stars"
     t.text "description"
     t.bigint "city_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "company_id"
     t.bigint "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_hotels_on_city_id"
     t.index ["company_id"], name: "index_hotels_on_company_id"
     t.index ["country_id"], name: "index_hotels_on_country_id"
@@ -94,20 +94,20 @@ ActiveRecord::Schema.define(version: 2019_07_12_232921) do
     t.bigint "room_id"
     t.date "reservation_from"
     t.date "reservation_to"
+    t.string "card_owner_email"
     t.index ["room_id"], name: "index_reservations_on_room_id"
   end
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
-    t.decimal "price"
+    t.float "price"
     t.text "description"
-    t.string "picture"
     t.date "available_from"
     t.date "available_to"
+    t.integer "number_of_guests"
     t.bigint "hotel_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "number_of_guests"
     t.index ["hotel_id"], name: "index_rooms_on_hotel_id"
   end
 
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 2019_07_12_232921) do
     t.string "l_name"
     t.boolean "admin", default: false
     t.boolean "has_company", default: false
+    t.string "stripe_customer_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

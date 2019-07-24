@@ -10,7 +10,7 @@ company = Company.create( name: 'Company', p_number: 1234, address: 'Why not', c
 country = Country.create( name: 'Neverpastbedtime land', abbreviation: 'Nl')
 city = City.create( name: 'I ame city', post_code: 'bla124b', country: country)
 hotel = Hotel.create( name: 'tithfs', stars: 2, description: 'This is test hotel for seeds', company: company, city: city)
-10.times { |i| Room.create(name: "Room ##{i}", price: i*10, description: "This is room number #{i}", hotel: hotel, available_from: Time.zone.today, available_to: Time.zone.today + 30 ) }
+10.times { |i| Room.create(name: "Room ##{i}", price: i*10, description: "This is room number #{i}", hotel: hotel, available_from: Time.zone.today, available_to: Time.zone.today + 30, number_of_guests: 2 ) }
 
 10.times do |i|
   Hotel.create(name: "Hotel ##{i}", stars: rand(1..5), description: 'This is test hotel for seeds', company: company, city: city)
