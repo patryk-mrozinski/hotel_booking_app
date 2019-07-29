@@ -14,5 +14,4 @@ class RoomsController < ApplicationController
   def filter_params
     params.slice(*Room.search_scopes)
   end
-
 end

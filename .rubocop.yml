@@ -1,0 +1,29 @@
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'spec/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'lib/**/*'
+    - 'bin/*'
+    - 'Gemfile'
+    - 'Gemfile.lock'
+    - 'Rakefile'
+
+Documentation:
+  Enabled: false
+
+AbcSize:
+  Max: 32
+
+LineLength:
+  Max: 100
+
+MethodLength:
+  Max: 17
+
+Style/UnneededInterpolation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

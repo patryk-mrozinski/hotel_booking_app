@@ -1,7 +1,7 @@
 module ForCompany
   class HotelsController < BaseController
     before_action :authenticate_user!
-    before_action :set_hotel, only: %i(show edit update destroy)
+    before_action :set_hotel, only: %i[show edit update destroy]
 
     def index
       @company = Company.find(params[:company_id])

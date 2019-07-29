@@ -1,7 +1,7 @@
 module ForCompany
   class RoomsController < BaseController
     before_action :authenticate_user!
-    before_action :set_room, only: %i(show edit update destroy)
+    before_action :set_room, only: %i[show edit update destroy]
 
     def index
       @hotel = Hotel.find(params[:hotel_id])
@@ -47,7 +47,8 @@ module ForCompany
     end
 
     def room_params
-      params.require(:room).permit(:name, :price, :description, :available_from, :available_to, :number_of_guests, :hotel_id, images: [])
+      params.require(:room).permit(:name, :price, :description, :available_from, :available_to,
+                                   :number_of_guests, :hotel_id, images: [])
     end
   end
 end

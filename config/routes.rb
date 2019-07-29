@@ -6,8 +6,6 @@ Rails.application.routes.draw do
     resources :rooms, only: %i[index show]
   end
 
-  # authenticate :company, lambda { |u| u.company? } do
-
  namespace :for_company do
    resources :companies do
      resources :hotels, only: :index

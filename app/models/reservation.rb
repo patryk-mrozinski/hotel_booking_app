@@ -12,6 +12,7 @@ class Reservation < ApplicationRecord
   end
 
   private
+
   def length_of_stay
     range_of_stay.length
   end
@@ -19,6 +20,4 @@ class Reservation < ApplicationRecord
   def range_of_stay
     (reservation_from...reservation_to).to_a
   end
-
-
 end

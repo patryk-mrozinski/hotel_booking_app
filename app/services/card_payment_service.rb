@@ -1,7 +1,6 @@
 require 'stripe'
 
 class CardPaymentService
-
   def initialize(params = {})
     @token = params[:token]
     @amount = params[:amount]
@@ -26,12 +25,11 @@ class CardPaymentService
   end
 
   def find_customer
-    Stripe::Customer.update(@user.stripe_customer_id, { source: @token })
+    Stripe::Customer.update(@user.stripe_customer_id, source: @token)
   end
 
   def create_customer
-    new_customer = Stripe::Customer.create( description: "user email: #{@email}", source: @token )
-
+    new_customer = Stripe::Customer.create(description: "user email: #{@email}", source: @token)
     @user.update(stripe_customer_id: customer.id) if @user&.stripe_customer_id&.present?
 
     new_customer

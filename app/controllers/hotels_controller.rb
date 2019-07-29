@@ -1,5 +1,4 @@
 class HotelsController < ApplicationController
-
   def index
     @hotels = Hotel.filter(filter_params)
   end
