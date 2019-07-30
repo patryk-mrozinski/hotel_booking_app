@@ -2,6 +2,7 @@ class Hotel < ApplicationRecord
   include Filterable
   has_many :rooms, dependent: :destroy
   belongs_to :company
+  belongs_to :country
   belongs_to :city
 
   search_scope :stars, ->(stars) { where stars: stars }

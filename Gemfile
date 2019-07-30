@@ -21,6 +21,8 @@ gem 'jquery-rails'
 gem 'mini_magick'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'aws-sdk-s3'
+gem 'aws-ses', '~> 0.4.4', require: 'aws/ses'
+# gem 'aws-sdk-ec2'
 gem 'stripe'
 
 group :development, :test do
