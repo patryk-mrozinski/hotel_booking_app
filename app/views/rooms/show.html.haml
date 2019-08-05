@@ -19,7 +19,9 @@
         = f.input :address
       .col-lg-3
         = f.input :city
-    - unless user_signed_in?
+    - if user_signed_in?
+      = f.hidden_field :card_owner_email, value: current_user.email
+    - else
       = f.input :card_owner_email, label: 'Please pass email for confirmation'
     .form-group
       %label{:for => "card-element"}

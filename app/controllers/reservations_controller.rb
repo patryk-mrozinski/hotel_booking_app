@@ -10,6 +10,7 @@ class ReservationsController < ApplicationController
 
     payment = payment_service(default.merge(custome))
     if payment.charge.status == 'succeeded' && @reservation.save
+      ReservationConfirmationMailer.with(reservation: @reservation).confirmation_email.deliver_later
       redirect_to root_path
     else
       render :new

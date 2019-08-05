@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1
+      Welcome
+    %p
+      You have successfully made a reservation
+      from: #{@reservation.reservation_from.strftime("%d, %B %Y")} to: #{@reservation.reservation_to.strftime("%d, %B %Y")}
+      %br/
+
+    %p Thanks, have a great day!
