@@ -9,16 +9,40 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     %script{ src: 'https://js.stripe.com/v3/' }
-  %bsody
-    - if user_signed_in?
-      = link_to 'Logout', destroy_user_session_path, method: :delete
-      = link_to 'Create Company', new_for_company_company_path
-      - if current_user.has_company
-        = link_to 'Your Company', for_company_companies_path
-    - else
-      = link_to 'Login',  new_user_session_path
-      = link_to 'Create an account', new_user_registration_path
-
+  %body
+    %nav.navbar.navbar-expand-lg.navbar.navbar-dark.bg-info
+      = link_to 'Navbar', root_path
+      %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+        %span.navbar-toggler-icon
+      - if user_signed_in?
+        .ml-3= link_to 'Logout', destroy_user_session_path, method: :delete
+      - else
+        .ml-3= link_to 'Login',  new_user_session_path
+        .ml-3= link_to 'Create an account', new_user_registration_path
+      #navbarSupportedContent.collapse.navbar-collapse
+        %ul.navbar-nav.mr-auto
+          - if user_signed_in?
+            %li.nav-item.dropdown
+              %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                Properties
+              .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+                - if current_user.has_company
+                  .dropdown-item= link_to 'Your Company', for_company_companies_path
+                  .dropdown-item= link_to 'Create Hotel', new_for_company_hotel_path
+                  %a.dropdown-item{:href => "#"} Messages
+            %li.nav-item.dropdown
+              %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                Profile
+              .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+                %a.dropdown-item{:href => "#"} Reservations
+                %a.dropdown-item{:href => "#"} History
+                %a.dropdown-item{:href => "#"} Profile
+                %a.dropdown-item{:href => "#"} Messages
+                .dropdown-divider
+                - if current_user.has_company
+                  .dropdown-item= link_to 'Your Company', for_company_companies_path
+                - else
+                  .dropdown-item= link_to 'Create Company', new_for_company_company_path
 
     %p.notice= notice
     %p.alert= alert
