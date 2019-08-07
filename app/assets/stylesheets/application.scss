@@ -33,3 +33,29 @@
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
 }
+
+.navbar-logo {
+  color: white;
+  font-size: x-large;
+    &:hover {
+      color: #e9a4a4;
+      text-decoration: none;
+    }
+}
+
+.navbar-link {
+  color: white;
+  margin-right: 10px;
+    &:hover {
+      color: #e9a4a4;
+      text-decoration: none;
+    }
+}
+
+.navbar-dropdown-option {
+  color: #e9a4a4;
+    &:hover {
+      color: #653c3c;
+      text-decoration: none;
+    }
+}

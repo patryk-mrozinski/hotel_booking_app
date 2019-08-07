@@ -11,24 +11,23 @@
     %script{ src: 'https://js.stripe.com/v3/' }
   %body
     %nav.navbar.navbar-expand-lg.navbar.navbar-dark.bg-info
-      = link_to 'Navbar', root_path
-      %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
-        %span.navbar-toggler-icon
-      - if user_signed_in?
-        .ml-3= link_to 'Logout', destroy_user_session_path, method: :delete
-      - else
-        .ml-3= link_to 'Login',  new_user_session_path
-        .ml-3= link_to 'Create an account', new_user_registration_path
-      #navbarSupportedContent.collapse.navbar-collapse
-        %ul.navbar-nav.mr-auto
+      .container.d-flex
+        = link_to 'Navbar', root_path, class: 'navbar-logo p-2'
+        .ml-auto.p-2
+          - if user_signed_in?
+            = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'navbar-link'
+          - else
+            = link_to 'Login',  new_user_session_path, class: 'navbar-link'
+            = link_to 'Create an account', new_user_registration_path, class: 'navbar-link'
+        %ul.navbar-nav
           - if user_signed_in?
             %li.nav-item.dropdown
               %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                 Properties
               .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
                 - if current_user.has_company
-                  .dropdown-item= link_to 'Your Company', for_company_companies_path
-                  .dropdown-item= link_to 'Create Hotel', new_for_company_hotel_path
+                  .dropdown-item= link_to 'Your Company', for_company_companies_path, class: 'navbar-dropdown-option'
+                  .dropdown-item= link_to 'Create Hotel', new_for_company_hotel_path, class: 'navbar-dropdown-option'
                   %a.dropdown-item{:href => "#"} Messages
             %li.nav-item.dropdown
               %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -40,10 +39,10 @@
                 %a.dropdown-item{:href => "#"} Messages
                 .dropdown-divider
                 - if current_user.has_company
-                  .dropdown-item= link_to 'Your Company', for_company_companies_path
+                  .dropdown-item= link_to 'Your Company', for_company_companies_path, class: 'navbar-dropdown-option'
                 - else
-                  .dropdown-item= link_to 'Create Company', new_for_company_company_path
-
-    %p.notice= notice
-    %p.alert= alert
-    = yield
+                  .dropdown-item= link_to 'Create Company', new_for_company_company_path, class: 'navbar-dropdown-option'
+    .container
+      %p.notice= notice
+      %p.alert= alert
+      = yield
