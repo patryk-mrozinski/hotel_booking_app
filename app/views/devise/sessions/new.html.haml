@@ -15,6 +15,6 @@
   .actions
     = f.submit "Log in"
   %hr
-    = link_to 'Log in with Google', user_google_oauth2_omniauth_authorize_path, class: 'btn btn-danger'
-    = link_to 'Log in with Facebook', user_facebook_omniauth_authorize_path, class: 'btn btn-primary'
+    = link_to 'Log in with Google', user_google_oauth2_omniauth_authorize_path, class: 'btn btn-danger popup', "data-width": 1000, "data-height": 600
+    = link_to 'Log in with Facebook', user_facebook_omniauth_authorize_path, class: 'btn btn-primary popup', "data-width": 1000, "data-height": 600
 = render "devise/shared/links"

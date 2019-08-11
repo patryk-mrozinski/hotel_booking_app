@@ -15,3 +15,9 @@
 
   = "#{hotel.city.name} <--- here is hotel}"
   = "My name is: #{hotel.name}"
+
+:javascript
+  if(window.opener) {
+    window.opener.location.reload(true);
+    window.close()
+  }

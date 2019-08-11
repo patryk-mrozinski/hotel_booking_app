@@ -19,7 +19,7 @@
   .actions
     = f.submit "Sign up"
   %hr
-    = link_to 'Sign up with Google', user_google_oauth2_omniauth_authorize_path, class: 'btn btn-google'
+    = link_to 'Sign up with Google', user_google_oauth2_omniauth_authorize_path, class: 'btn btn-google popup', "data-width": 1000, "data-height": 600
     %br
-    = link_to 'Sign up with Facebook', user_facebook_omniauth_authorize_path, class: 'btn btn-facebook'
+    = link_to 'Sign up with Facebook', user_facebook_omniauth_authorize_path, class: 'btn btn-facebook popup', "data-width": 1000, "data-height": 600
 = render "devise/shared/links"
