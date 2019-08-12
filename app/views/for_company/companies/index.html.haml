@@ -1,7 +1,4 @@
 .container
-  = link_to 'Add Hotel', new_for_company_hotel_path, class: 'btn btn-info'
-  = link_to 'Add Room', new_for_company_room_path, class: 'btn btn-info'
-  = link_to 'Add new company', new_for_company_company_path, class: 'btn btn-primary'
   .jumbotron
     - @companies.each do |company|
       %h1.display-4= company.name

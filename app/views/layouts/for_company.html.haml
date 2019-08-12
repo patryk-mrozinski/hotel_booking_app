@@ -8,8 +8,27 @@
     = stylesheet_link_tag    'for_company', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'for_company', 'data-turbolinks-track': 'reload'
   %body
-    %h1 This is section for company
-    = link_to 'Logout', destroy_user_session_path, method: :delete
+    %nav.navbar.navbar-expand-lg.navbar.navbar-dark.bg-light
+      .container.d-flex
+        = link_to 'Back to main page', root_path, class: 'btn btn-outline-dark p-2'
+        .p-2 Section for company
+        .ml-auto.p-2
+          .dropdown
+            %button#dropdownMenuButton.btn.btn-outline-success.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+              Create
+            .dropdown-menu{"aria-labelledby" => "dropdownMenuButton"}
+              .dropdown-item= link_to 'Add new company', new_for_company_company_path, class: 'list-group-item-action'
+              .dropdown-item= link_to 'Add Hotel', new_for_company_hotel_path, class: 'list-group-item-action'
+              .dropdown-item= link_to 'Add Room', new_for_company_room_path, class: 'list-group-item-action'
+        = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger'
     %p.notice= notice
     %p.alert= alert
     = yield
+
+.dropdown
+  %button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+    Dropdown button
+  .dropdown-menu{"aria-labelledby" => "dropdownMenuButton"}
+    %a.dropdown-item{:href => "#"} Action
+    %a.dropdown-item{:href => "#"} Another action
+    %a.dropdown-item{:href => "#"} Something else here
