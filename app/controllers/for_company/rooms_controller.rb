@@ -11,7 +11,6 @@ module ForCompany
     def show; end
 
     def new
-      @company = Company.find(params[:company_id])
       @room = Room.new
     end
 

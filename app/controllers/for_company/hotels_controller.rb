@@ -46,7 +46,7 @@ module ForCompany
     end
 
     def hotel_params
-      params.require(:hotel).permit(:name, :stars, :description, :company_id, :country_id, :city_id)
+      params.require(:hotel).permit(:name, :stars, :description, :company_id, :country_id, :city_id, images: [])
     end
   end
 end

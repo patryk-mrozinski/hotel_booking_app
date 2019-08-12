@@ -1,10 +1,11 @@
-%h1= "This is #{@hotel.name} page"
-= link_to 'Create rooms', new_for_company_room_path(company_id: @hotel.company.id)
-%hr
-= link_to 'All rooms', for_company_hotel_rooms_path(@hotel)
-%hr
-= @hotel.name
-%hr
-= @hotel.description
-%hr
-= @hotel.stars
+.container
+  %h1= "This is #{@hotel.name} page"
+  = link_to 'Create rooms', new_for_company_room_path(company_id: @hotel.company.id)
+  %hr
+  = link_to 'All rooms', for_company_hotel_rooms_path(@hotel)
+  %hr
+  = @hotel.name
+  %hr
+  = @hotel.description
+  %hr
+  = @hotel.stars

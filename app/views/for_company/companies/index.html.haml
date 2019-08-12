@@ -1,6 +1,37 @@
-%h1 your Company
-- @companies.each do |company|
-  = company.name
-  = company.company_email
-  = link_to 'Company', for_company_company_path(company)
-  %hr
+.container
+  = link_to 'Add Hotel', new_for_company_hotel_path, class: 'btn btn-info'
+  = link_to 'Add Room', new_for_company_room_path, class: 'btn btn-info'
+  = link_to 'Add new company', new_for_company_company_path, class: 'btn btn-primary'
+  .jumbotron
+    - @companies.each do |company|
+      %h1.display-4= company.name
+      %hr.my-4
+        = company.company_email
+        %br
+        = company.p_number
+        %br
+        = company.address
+        %br
+        = link_to 'Company', for_company_company_path(company)
+        %hr
+        .btn.btn-primary.btn-lg{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseExample", :role => "button"}
+          Your Hotels
+        #collapseExample.collapse
+          - company.hotels.each_slice(2) do |slice_hotel|
+            .row
+              - slice_hotel.each do |hotel|
+                .card{:style => "width: 30rem;"}
+                  %img.card-img-top
+                    - if hotel.images.any?
+                      = image_tag hotel.images.first.service_url
+                  .card-body
+                    %h5.card-title= hotel.name
+                    %p.card-text
+                    Country:
+                    = hotel.country.name
+                    %hr City:
+                    = hotel.city.name
+                    %hr Stars:
+                    = hotel.stars
+                    %hr
+                    = link_to 'View', for_company_hotel_path(hotel), class: 'btn btn-primary'

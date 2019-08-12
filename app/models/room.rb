@@ -6,6 +6,7 @@ class Room < ApplicationRecord
   has_many :booked_rooms
   has_many :users, through: :booked_rooms
   has_many :reservations
+  
   has_many_attached :images
 
   scope :with_eager_loaded_images, -> { eager_load(images_attachments: :blob) }
