@@ -18,7 +18,7 @@ module ForCompany
       @room = Room.new(room_params)
 
       if @room.save
-        redirect_to [:for_company, @room]
+        redirect_to [:for_company, @room.hotel]
       else
         render :new
       end
@@ -35,8 +35,10 @@ module ForCompany
     end
 
     def destroy
+      @hotel = @room.hotel
+
       @room.destroy
-      redirect_to rooms_path
+      redirect_to [:for_company, @hotel]
     end
 
     private

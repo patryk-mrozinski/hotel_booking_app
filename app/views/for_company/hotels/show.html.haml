@@ -1,11 +1,44 @@
 .container
-  %h1= "This is #{@hotel.name} page"
-  = link_to 'Create rooms', new_for_company_room_path(company_id: @hotel.company.id)
-  %hr
-  = link_to 'All rooms', for_company_hotel_rooms_path(@hotel)
-  %hr
-  = @hotel.name
-  %hr
-  = @hotel.description
-  %hr
-  = @hotel.stars
+  .card
+    .card-header
+      %img.card-img-top.mx-auto
+        - if @hotel.images.any?
+          = image_tag @hotel.images.first.service_url
+      %h1.card-title= @hotel.name
+      = @hotel.description
+      %hr
+      .d-flex
+        .p-2
+          %h5.card-subtitle.mb-2.text-muted Details:
+          Country:
+          = @hotel.country.name
+          %br
+          City:
+          = @hotel.city.name
+          %br
+          Number of stars:
+          = @hotel.stars
+          %br
+          Number of rooms:
+          = @hotel.rooms.count
+        .ml-auto.p-2.align-self-end
+          = link_to 'Create room', new_for_company_room_path, class: 'btn btn-outline-success'
+    .card-body
+      %h3.text-center Rooms List
+      - @hotel.rooms.each_slice(3) do |slice_room|
+        .row
+          - slice_room.each do |room|
+            .card.col
+              %img.card-img-top.mx-auto
+                - if room.images.any?
+                  = image_tag room.images.first.service_url
+              .card-body
+                %h5.card-title= link_to room.name, for_company_room_path(room), class: 'font-weight-bold text-dark'
+                %p.card-text= room.description
+              %ul.list-group.list-group-flush
+                %li.list-group-item= "Guests number #{room.number_of_guests}"
+                %li.list-group-item= "Price: #{room.price}"
+              .card-body
+                .d-flex
+                  .ml-auto.p-2
+                    = link_to 'Delete room', for_company_room_path(room), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'
