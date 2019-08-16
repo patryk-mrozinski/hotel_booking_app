@@ -1,15 +1,30 @@
-%h1= "This is #{@room.name} page"
-%hr
-= link_to 'To companies page', for_company_companies_path
-%hr
-= @room.name
-%hr
-= @room.description
-%hr
-= @room.price
-= @room.hotel.name
-%hr
-%h4 Pictures:
-
-- @room.images.each do |image|
-  = image_tag image.service_url
+.container
+  .card
+    .card-header
+      %h1.card-title= @room.name
+      = @room.description
+      %hr
+      .d-flex
+        .p-2
+          %h5.card-subtitle.mb-2.text-muted Details:
+          Price per night(GBP):
+          = @room.price
+          %br
+          Suitable for(max number of guests):
+          = @room.number_of_guests
+        .ml-auto.p-2.align-self-end
+          = link_to "Hotel name: #{@room.hotel.name}", for_company_hotel_path(@room.hotel), class: 'btn btn-outline-primary'
+    .card-body
+      .d-flex
+        %h3.text-center.p-2 Room Pictures:
+        .ml-auto.p-2
+          .input-group
+            = simple_form_for [:for_company, @room ] do |f|
+              .small= f.input :images, as: :file, input_html: { multiple: true, class: 'small' }, direct_upload: true, label: false
+              .small= f.button :submit, 'Upload' , class: 'btn btn-outline-primary btn-sm'
+      - if @room.images.any?
+        - @room.images.each_slice(3) do |slice_image|
+          .row
+            - slice_image.each do |image|
+              .card.col
+                %img.card-img-top= image_tag image.service_url
