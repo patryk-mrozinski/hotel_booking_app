@@ -1,2 +1,23 @@
 @import "bootstrap";
 @import "select2.min.css";
+
+.room-picture {
+  max-width: 250px;
+  height: 200px;
+  background-position: center center;
+  background-size: cover;
+}
+
+.hotel-picture {
+  max-width: 400px;
+  height: 350px;
+  background-position: center center;
+  background-size: cover;
+}
+
+.small-image {
+  max-width: 100px;
+  height: 80px;
+  background-position: center center;
+  background-size: cover;
+}

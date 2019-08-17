@@ -23,8 +23,7 @@
               .small= f.input :images, as: :file, input_html: { multiple: true, class: 'small' }, direct_upload: true, label: false
               .small= f.button :submit, 'Upload' , class: 'btn btn-outline-primary btn-sm'
       - if @room.images.any?
-        - @room.images.each_slice(3) do |slice_image|
-          .row
-            - slice_image.each do |image|
-              .card.col
-                %img.card-img-top= image_tag image.service_url
+        .row
+          - @room.images.each do |image|
+            .card.col-lg-3.col-md-4.col-sm-6
+              .room-picture{style: "background-image: url('" + image.service_url + "');"}

@@ -163,7 +163,7 @@ GEM
       railties (>= 3.0.0, < 7)
     method_source (0.9.2)
     mimemagic (0.3.3)
-    mini_magick (4.9.3)
+    mini_magick (4.9.5)
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
@@ -342,7 +342,7 @@ DEPENDENCIES
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   meta_request
-  mini_magick
+  mini_magick (~> 4.9, >= 4.9.5)
   omniauth-facebook
   omniauth-google-oauth2
   pg (>= 0.18, < 2.0)

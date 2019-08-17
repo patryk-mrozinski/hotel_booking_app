@@ -18,12 +18,12 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'simple_form'
 gem 'rubocop-rails'
 gem 'jquery-rails'
-gem 'mini_magick'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'aws-sdk-s3'
 gem 'stripe'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+gem 'mini_magick', '~> 4.9', '>= 4.9.5'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

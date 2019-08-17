@@ -31,7 +31,8 @@
             .card.col
               %img.card-img-top.mx-auto
                 - if room.images.any?
-                  = image_tag room.images.first.service_url
+                  -# .hotel-picture= image_tag room.images.first.service_url
+                  .hotel-picture{style: "background-image: url('" + room.images.first.service_url + "');"}
               .card-body
                 %h5.card-title= link_to room.name, for_company_room_path(room), class: 'font-weight-bold text-dark'
                 %p.card-text= room.description
