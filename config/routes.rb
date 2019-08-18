@@ -15,7 +15,9 @@ Rails.application.routes.draw do
      resources :rooms, only: :index
    end
 
-   resources :rooms, except: :index
+   resources :rooms, except: :index do
+     resources :images, only: :destroy
+   end
  end
 
  resources :rooms, only: %i[index show] do
