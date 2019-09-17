@@ -1,13 +1,37 @@
-%h1 This is show page for company
-%h2= link_to 'Create hotel', new_for_company_hotel_path
-- if @company.hotels
-  = link_to 'Your hotels', for_company_company_hotels_path(@company)
-%hr
-= @company.name
-%hr
-= @company.p_number
-%hr
-= @company.address
-%hr
-= @company.company_email
-= @company.company_serial
+.container
+  .jumbotron
+    %h1= @company.name
+    %h3= link_to 'Create hotel', new_for_company_hotel_path
+    - if @company.hotels
+      = link_to 'Your hotels', for_company_company_hotels_path(@company)
+    %hr
+    = @company.name
+    %hr
+    = @company.p_number
+    %hr
+    = @company.address
+    %hr
+    = @company.company_email
+    = @company.company_serial
+    %hr
+    .btn.btn-primary{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-target" => "#collapseExample", "data-toggle" => "collapse", type: "button"}
+      Company Hotels
+    #collapseExample.collapse
+      - @company.hotels.each_slice(2) do |slice_hotel|
+        .row.mt-3
+          - slice_hotel.each do |hotel|
+            .card.w-50
+              %img.card-img-top
+                - if hotel.images.any?
+                  = image_tag hotel.images.first.service_url
+              .card-body
+                %h5.card-title= hotel.name
+                %p.card-text
+                Country:
+                = hotel.country.name
+                %hr City:
+                = hotel.city.name
+                %hr Stars:
+                = hotel.stars
+                %hr
+                = link_to 'View', for_company_hotel_path(hotel), class: 'btn btn-primary'

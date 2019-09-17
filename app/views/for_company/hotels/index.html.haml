@@ -1,9 +1,33 @@
-%h1 Hotels page
-
-
-- @hotels.each do |hotel|
-  = link_to "#{hotel.name}", for_company_hotel_path(hotel)
-  %hr
-  = hotel.description
-  = hotel.stars
-  %hr
+.container
+  - @hotels.each do |hotel|
+    .card
+      .card-header
+        %img.card-img-top.mx-auto
+          - if hotel.images.any?
+            = image_tag hotel.images.first.service_url
+        %h1.card-title= link_to "#{hotel.name}", for_company_hotel_path(hotel)
+        %hr
+        = hotel.description
+        %br
+        = hotel.stars
+        %br
+        = hotel.city.name
+        %br
+        = "Belongs to company #{hotel.company.name}"
+        %hr
+        .btn.btn-primary.btn-lg{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseExample#{hotel.id}", :role => "button"}
+          Your Hotels
+        .collapse{id: "collapseExample#{hotel.id}"}
+          - hotel.rooms.each_slice(4) do |slice_room|
+            .row.mt-1
+              - slice_room.each do |room|
+                .card.col
+                  %img.card-img-top.mx-auto
+                    - if room.images.any?
+                      .room-picture{style: "background-image: url('" + room.images.first.service_url + "');"}
+                    .card-body
+                      %h5.card-title= link_to room.name, for_company_room_path(room), class: 'font-weight-bold text-dark'
+                      %p.card-text= room.description
+                    %ul.list-group.list-group-flush
+                      %li.list-group-item= "Guests number #{room.number_of_guests}"
+                      %li.list-group-item= "Price: #{room.price}"

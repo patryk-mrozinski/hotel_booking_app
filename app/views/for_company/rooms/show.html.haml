@@ -29,4 +29,4 @@
               .room-picture{style: "background-image: url('" + image.service_url + "');"}
             .card.body
               = link_to 'delete pic', for_company_room_image_path(:for_company, image), method: :delete,
-                data: { confirm: 'Are you sure?' }
+                data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-circle btn-sm'
