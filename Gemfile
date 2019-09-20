@@ -18,7 +18,6 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'simple_form'
 gem 'rubocop-rails'
 gem 'jquery-rails'
-gem 'dotenv-rails', groups: [:development, :test]
 gem 'aws-sdk-s3'
 gem 'stripe'
 gem 'omniauth-facebook'
@@ -28,6 +27,10 @@ gem 'mini_magick', '~> 4.9', '>= 4.9.5'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry', '~> 0.12.2'
+  gem 'dotenv-rails'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
+  gem 'rubocop-rspec'
 end
 
 group :development do
@@ -42,6 +45,8 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
+  gem 'rails-controller-testing'
+  gem 'shoulda-matchers'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
