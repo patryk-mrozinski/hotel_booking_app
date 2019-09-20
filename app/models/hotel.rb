@@ -4,7 +4,6 @@ class Hotel < ApplicationRecord
   belongs_to :company
   belongs_to :country
   belongs_to :city
-  
   has_many_attached :images
 
   scope :with_eager_loaded_images, -> { eager_load(images_attachments: :blob) }
