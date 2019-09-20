@@ -16,7 +16,7 @@
         = "Belongs to company #{hotel.company.name}"
         %hr
         .btn.btn-primary.btn-lg{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseExample#{hotel.id}", :role => "button"}
-          Your Hotels
+          Your Rooms
         .collapse{id: "collapseExample#{hotel.id}"}
           - hotel.rooms.each_slice(4) do |slice_room|
             .row.mt-1

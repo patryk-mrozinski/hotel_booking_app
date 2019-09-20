@@ -15,7 +15,14 @@
 
   = "#{hotel.city.name} <--- here is hotel}"
   = "My name is: #{hotel.name}"
-
+  - if hotel.rooms.any?
+    %h5.text-center Rooms:
+    .slick-slider
+      - hotel.rooms.each do |room|
+        - if room.images.any?
+          .container
+            .room-picture.ml-5{style: "background-image: url('" + room.images.first.service_url + "');"}
+            = link_to room.name, hotel_room_path(hotel, room), class: 'text-center'
 :javascript
   if(window.opener) {
     window.opener.location.reload(true);

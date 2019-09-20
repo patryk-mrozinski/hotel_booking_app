@@ -1,4 +1,6 @@
 @import "bootstrap";
+@import "slick.css";
+@import "slick-theme.css";
 
 /**
  * The CSS shown here will not be introduced in the Quickstart guide, but shows
@@ -58,4 +60,15 @@
       color: #653c3c;
       text-decoration: none;
     }
+}
+
+.slick-prev:before, .slick-next:before {
+  color: red;
+}
+
+.room-picture {
+  max-width: 250px;
+  height: 200px;
+  background-position: center center;
+  background-size: cover;
 }
