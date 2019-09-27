@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :country do
-    name { 'Party place'}
-    abbreviation { 'Pp' }
+    sequence(:name) { |n| "Party place #{n}"  }
+    sequence(:abbreviation) { |n| "pp #{n}"  }
   end
 end

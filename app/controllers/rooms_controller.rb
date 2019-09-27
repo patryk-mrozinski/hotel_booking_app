@@ -1,6 +1,5 @@
 class RoomsController < ApplicationController
   def index
-    @hotel = Hotel.find(params[:hotel_id])
     @rooms = Room.filter(filter_params)
   end
 
