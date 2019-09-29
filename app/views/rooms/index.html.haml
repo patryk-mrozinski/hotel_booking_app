@@ -9,7 +9,9 @@
 - @rooms.each do |room|
   %hr
   = link_to room.name, hotel_room_path(room.hotel, room), class: 'btn btn-primary'
-  = room.price
+  = room.hotel.name
+  %hr
+  = link_to "Belong to hotel: #{room.hotel.name}", hotel_path(room.hotel), class: 'btn btn-light btn-sm'
   %br
   = room.description
   %br

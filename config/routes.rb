@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'hotels#index'
+  root 'rooms#index'
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   resources :hotels, only: %i[index show] do
