@@ -19,3 +19,9 @@
   %br
   = room.available_to
   %br
+  %h5.text-center Pictures:
+  .slick-slider
+    - if room.images.any?
+      - room.images.each do |image|
+        .container
+          .room-picture.ml-5{style: "background-image: url('" + image.service_url + "');"}
