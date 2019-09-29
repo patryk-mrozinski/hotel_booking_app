@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require bootstrap
 //= slick.min.js
+//= require flatpickr
 //= require_tree
 
 $(document).ready(function(){
@@ -23,5 +24,5 @@ $(document).ready(function(){
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 3
-  });
+  });  
 });

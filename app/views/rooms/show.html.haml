@@ -10,10 +10,16 @@
   = @room.available_from
   %hr
 
-  = simple_form_for [@room, @reservation] do |f|
-    = f.input :reservation_from, as: :date
-    = f.input :reservation_to, as: :date
-    = f.input :card_holder_name
+  = simple_form_for [@room, @reservation], remote: true do |f|
+    .d-flex
+      .p-2
+        %i.fa.fa-calendar.btn.btn-outline-info
+      .p-2
+        = f.input :reservation_from, as: :string, label: false, placeholder: 'Check-in', readonly: true
+      .p-2
+        = f.input :reservation_to, as: :string, label: false, placeholder: 'Check-out', readonly: true
+      .p-2.w-50
+        = f.input :card_holder_name, label: false, placeholder: 'Card holder name'
     .row
       .col-lg-9
         = f.input :address
